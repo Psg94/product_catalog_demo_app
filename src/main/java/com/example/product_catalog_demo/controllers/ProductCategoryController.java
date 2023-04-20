@@ -2,6 +2,7 @@ package com.example.product_catalog_demo.controllers;
 
 import com.example.product_catalog_demo.entities.ProductCategory;
 import com.example.product_catalog_demo.services.ProductCategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,7 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/categories/create")
-    public String saveProductCategory(ProductCategory productCategory) {
+    public String saveProductCategory(@Valid ProductCategory productCategory) {
         productCategoryService.saveProductCategory(productCategory);
 
         return "redirect:/categories";

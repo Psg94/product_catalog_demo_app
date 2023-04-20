@@ -1,6 +1,7 @@
 package com.example.product_catalog_demo.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "product_categories")
@@ -11,6 +12,7 @@ public class ProductCategory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Category name must be not blank!")
     @Column(name = "name")
     private String name;
 
