@@ -2,6 +2,7 @@ package com.example.product_catalog_demo.services;
 
 import com.example.product_catalog_demo.entities.Product;
 import com.example.product_catalog_demo.entities.ProductCategory;
+import com.example.product_catalog_demo.exception_handling.NoSuchCategoryException;
 import com.example.product_catalog_demo.repositories.ProductCategoryRepository;
 import com.example.product_catalog_demo.repositories.ProductRepository;
 import com.example.product_catalog_demo.ui_display.ProductUiDisplay;
@@ -116,6 +117,13 @@ public class ProductService {
     }
 
     public void saveProduct(ProductUiDisplay productUiDisplay, MultipartFile productImageFile) {
+
+        ProductCategory productCategory = productCategoryRepository.findAllById(productUiDisplay.getCategoryId()).orElse(null);
+
+        if (productCategory == null) {
+            throw new NoSuchCategoryException("Product category with ID = " + productUiDisplay.getCategoryId() +
+                                              " doesn't exists!");
+        }
 
         Product product = toProduct(productUiDisplay);
 

@@ -1,5 +1,6 @@
 package com.example.product_catalog_demo.exception_handling;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -23,5 +24,14 @@ public class GlobalExceptionHandler {
         }
 
         return ResponseEntity.badRequest().body(exceptionInfo);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ExceptionInfo> handleException(NoSuchCategoryException e) {
+        ExceptionInfo exceptionInfo = new ExceptionInfo();
+
+        exceptionInfo.setErrorMessage(e.getMessage());
+
+        return new ResponseEntity<>(exceptionInfo, HttpStatus.NOT_FOUND);
     }
 }
