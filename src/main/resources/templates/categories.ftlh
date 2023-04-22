@@ -44,5 +44,6 @@
     <input type="submit" value="Add"/>
 </form>
 <hr>
+<h3><a href="/products">Go to all products...</a></h3>
 </body>
 </html>

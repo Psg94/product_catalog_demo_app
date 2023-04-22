@@ -62,5 +62,6 @@
     <input type="submit" value="Add"/>
 </form>
 <hr>
+<h3><a href="/categories">Go to all categories...</a></h3>
 </body>
 </html>
