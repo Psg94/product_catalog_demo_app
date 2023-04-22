@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     @PostMapping("/products/update")
-    public String updateProduct(@ModelAttribute("product") ProductUiDisplay productDisplay,
+    public String updateProduct(@Valid ProductUiDisplay productDisplay,
                                 @RequestParam("productImageFile") MultipartFile productImageFile) {
         productService.updateProduct(productDisplay, productImageFile);
 

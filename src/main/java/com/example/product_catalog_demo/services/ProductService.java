@@ -140,6 +140,13 @@ public class ProductService {
         if (productUiDisplay != null) {
             Product repoProduct = productRepository.findAllById(productUiDisplay.getId()).orElse(null);
 
+            ProductCategory productCategory = productCategoryRepository.findAllById(productUiDisplay.getCategoryId()).orElse(null);
+
+            if (productCategory == null) {
+                throw new NoSuchCategoryException("Product category with ID = " + productUiDisplay.getCategoryId() +
+                        " doesn't exists!");
+            }
+
             if (repoProduct != null) {
                 copyProductUpdatableFieldsOnly(productUiDisplay, repoProduct);
 
