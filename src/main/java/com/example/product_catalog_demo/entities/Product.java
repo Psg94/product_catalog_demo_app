@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Base64;
 
 @Entity
 @Table(name = "products")
