@@ -6,9 +6,9 @@
 <body>
 <h2>Information about product category:</h2>
 <form action="/categories/update" method="post">
-    <input type="number" name="id" value="${category.id}" hidden="true"/>
-    Name: <input type="text" name="name" value="${category.name}"/><br><br>
-    Description: <input type="text" name="description" value="${category.description}"/><br><br>
+    ID: <input type="number" name="id" value="${category.id}" readonly="true"/><br><br>
+    Name: <input type="text" name="name" value="${category.name!""}"/><br><br>
+    Description: <input type="text" name="description" value="${category.description!""}"/><br><br>
     <input type="submit" value="Update" style="width: 80px;"/>
 </form>
 <br>
