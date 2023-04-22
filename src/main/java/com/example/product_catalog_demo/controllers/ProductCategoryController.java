@@ -43,7 +43,7 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/categories/update")
-    public String updateProductCategory(@ModelAttribute("category") ProductCategory productCategory) {
+    public String updateProductCategory(@Valid @ModelAttribute("category") ProductCategory productCategory) {
         if (productCategory != null) {
             productCategoryService.updateProductCategory(productCategory);
         }
