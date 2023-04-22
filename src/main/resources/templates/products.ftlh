@@ -14,6 +14,7 @@
 <form action="/products" method="get">
     Name: <input type="text" name="name"><br><br>
     Description: <input type="text" name="description"><br><br>
+    Category ID: <input type="text" name="categoryId"><br><br>
     Price From: <input type="text" name="priceFrom"><br><br>
     Price To: <input type="text" name="priceTo"><br><br>
     <input type="submit" value="Search"/>

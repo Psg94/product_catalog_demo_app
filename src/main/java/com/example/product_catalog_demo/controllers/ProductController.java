@@ -19,13 +19,15 @@ public class ProductController {
     @GetMapping("/products")
     public String getProducts(@RequestParam(name = "name", required = false) String productName,
                               @RequestParam(name = "description", required = false) String productDescr,
+                              @RequestParam(name = "categoryId", required = false) Long categoryId,
                               @RequestParam(name = "priceFrom", required = false) Double priceFrom,
                               @RequestParam(name = "priceTo", required = false) Double priceTo,
                               Model model) {
-        List<ProductUiDisplay> products= productService.getProducts(productName,
-                                                                    productDescr,
-                                                                    priceFrom,
-                                                                    priceTo);
+        List<ProductUiDisplay> products = productService.getProducts(productName,
+                                                                     productDescr,
+                                                                     categoryId,
+                                                                     priceFrom,
+                                                                     priceTo);
 
         model.addAttribute("products", products);
 

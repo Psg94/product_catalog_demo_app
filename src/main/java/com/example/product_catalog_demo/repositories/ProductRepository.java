@@ -15,11 +15,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM products p " +
                    "WHERE p.name LIKE :nameMask " +
                    "AND p.description LIKE :descriptionMask " +
+                   "AND (:categoryId IS NULL OR p.category_id = :categoryId) " +
                    "AND (:priceFrom IS NULL OR p.price >= :priceFrom)" +
                    "AND (:priceTo IS NULL OR p.price <= :priceTo)",
             nativeQuery = true)
     List<Product> findProducts(@Param("nameMask") String nameMask,
                                @Param("descriptionMask") String descriptionMask,
+                               @Param("categoryId") Long categoryId,
                                @Param("priceFrom") Double priceFrom,
                                @Param("priceTo") Double priceTo);
     Product save(Product products);

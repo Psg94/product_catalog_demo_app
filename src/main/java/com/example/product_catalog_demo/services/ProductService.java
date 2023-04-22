@@ -88,12 +88,14 @@ public class ProductService {
 
     public List<ProductUiDisplay> getProducts(String productName,
                                               String productDescr,
+                                              Long categoryId,
                                               Double priceFrom,
                                               Double priceTo) {
         List<ProductUiDisplay> products = null;
 
         if (!isParameterFilled(productName) &&
                 !isParameterFilled(productDescr) &&
+                !isNumberParameterFilled(categoryId) &&
                 !isNumberParameterFilled(priceFrom) &&
                 !isNumberParameterFilled(priceTo)) {
             products = productRepository.findAll()
@@ -102,7 +104,7 @@ public class ProductService {
             String nameMask = productName.isEmpty()? "%": productName;
             String descriptionMask = productDescr.isEmpty()? "%": productDescr;
 
-            products = productRepository.findProducts(nameMask, descriptionMask, priceFrom, priceTo)
+            products = productRepository.findProducts(nameMask, descriptionMask, categoryId, priceFrom, priceTo)
                     .stream().map(product -> toProductUiDisplay(product)).collect(Collectors.toList());
         }
 
