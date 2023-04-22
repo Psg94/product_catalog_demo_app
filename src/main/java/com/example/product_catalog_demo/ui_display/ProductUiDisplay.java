@@ -1,20 +1,29 @@
 package com.example.product_catalog_demo.ui_display;
 
+import com.example.product_catalog_demo.validation.PriceValueConstraint;
+import com.example.product_catalog_demo.validation.ProductStatusConstraint;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
 import java.util.Base64;
 
 public class ProductUiDisplay {
     private Long id;
 
+    @NotBlank(message = "Product name must be not blank!")
     private String name;
 
     private String description;
 
+    @PriceValueConstraint
     private String price;
 
+    @Positive(message = "ID of category must be positive number!")
     private Long categoryId;
 
     private String creationDate;
 
+    @ProductStatusConstraint
     private String status;
 
     private String imageDisplay;

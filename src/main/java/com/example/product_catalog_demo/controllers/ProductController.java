@@ -2,6 +2,7 @@ package com.example.product_catalog_demo.controllers;
 
 import com.example.product_catalog_demo.services.ProductService;
 import com.example.product_catalog_demo.ui_display.ProductUiDisplay;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,7 @@ public class ProductController {
     }
 
     @PostMapping("/products/create")
-    public String saveProduct(ProductUiDisplay productUiDisplay,
+    public String saveProduct(@Valid ProductUiDisplay productUiDisplay,
                               @RequestParam("productImageFile") MultipartFile productImageFile) {
         productService.saveProduct(productUiDisplay, productImageFile);
 
