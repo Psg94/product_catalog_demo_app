@@ -3,6 +3,8 @@ package com.example.product_catalog_demo.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
 @Table(name = "product_categories")
 public class ProductCategory {
@@ -18,6 +20,11 @@ public class ProductCategory {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "productCategory",
+               cascade = {CascadeType.REMOVE},
+               fetch = FetchType.LAZY)
+    private List<Product> products;
 
     public ProductCategory() {
     }
