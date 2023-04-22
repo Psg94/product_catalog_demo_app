@@ -22,7 +22,10 @@ public class ProductCategoryService {
         if (!isParameterFilled(productCategoryName) && !isParameterFilled(productCategoryDescr)) {
             productCategories = productCategoryRepository.findAll();
         } else {
-            productCategories = productCategoryRepository.findAllByNameOrDescription(productCategoryName, productCategoryDescr);
+            String nameMask = productCategoryName.isEmpty()? "%": productCategoryName;
+            String descriptionMask = productCategoryDescr.isEmpty()? "%": productCategoryDescr;
+
+            productCategories = productCategoryRepository.findAllByNameAndDescription(nameMask, descriptionMask);
         }
 
         return productCategories;
