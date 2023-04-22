@@ -22,7 +22,6 @@ public class ProductCategory {
     private String description;
 
     @OneToMany(mappedBy = "productCategory",
-               cascade = {CascadeType.REMOVE},
                fetch = FetchType.LAZY)
     private List<Product> products;
 

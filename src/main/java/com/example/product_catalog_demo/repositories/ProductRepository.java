@@ -2,6 +2,7 @@ package com.example.product_catalog_demo.repositories;
 
 import com.example.product_catalog_demo.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -25,6 +26,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                                @Param("priceFrom") Double priceFrom,
                                @Param("priceTo") Double priceTo);
     Product save(Product products);
+
+    @Modifying
+    @Query(value = "UPDATE products p " +
+                   "SET p.category_id = NULL, " +
+                   "p.status = :status " +
+                   "WHERE p.category_id = :deletedCategoryId",
+            nativeQuery = true)
+    int updateStatusByDeletedCategory(@Param("status") String status,
+                                      @Param("deletedCategoryId") Long deletedCategoryId);
 
     void deleteById(Long id);
 }

@@ -2,6 +2,8 @@ package com.example.product_catalog_demo.services;
 
 import com.example.product_catalog_demo.entities.ProductCategory;
 import com.example.product_catalog_demo.repositories.ProductCategoryRepository;
+import com.example.product_catalog_demo.repositories.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ import java.util.List;
 public class ProductCategoryService {
     @Autowired
     private ProductCategoryRepository productCategoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     private boolean isParameterFilled(String parameterValue) {
         return parameterValue != null && !parameterValue.isEmpty();
@@ -58,7 +63,10 @@ public class ProductCategoryService {
         }
     }
 
+    @Transactional
     public void deleteProductCategory(Long id) {
+        productRepository.updateStatusByDeletedCategory("INACTIVE", id);
+
         productCategoryRepository.deleteById(id);
     }
 }
