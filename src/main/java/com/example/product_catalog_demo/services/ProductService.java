@@ -7,6 +7,7 @@ import com.example.product_catalog_demo.repositories.ProductCategoryRepository;
 import com.example.product_catalog_demo.repositories.ProductRepository;
 import com.example.product_catalog_demo.ui_display.ProductUiDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -98,10 +99,10 @@ public class ProductService {
             products = productRepository.findAll()
                     .stream().map(product -> toProductUiDisplay(product)).collect(Collectors.toList());
         } else {
-            products = productRepository.findByNameOrDescriptionOrPriceBetween(productName,
-                    productDescr,
-                    priceFrom,
-                    priceTo)
+            String nameMask = productName.isEmpty()? "%": productName;
+            String descriptionMask = productDescr.isEmpty()? "%": productDescr;
+
+            products = productRepository.findProducts(nameMask, descriptionMask, priceFrom, priceTo)
                     .stream().map(product -> toProductUiDisplay(product)).collect(Collectors.toList());
         }
 
