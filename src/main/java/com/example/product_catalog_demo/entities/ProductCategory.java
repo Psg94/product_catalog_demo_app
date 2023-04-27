@@ -11,7 +11,7 @@ public class ProductCategory {
 
     @Column(name = "id")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Category name must be not blank!")
